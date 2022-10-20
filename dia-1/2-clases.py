@@ -15,7 +15,7 @@ class Persona:
         print(texto)
 
     def saludar_cordialmente(self, nombre):
-        texto = 'Hola {}, mucho gusto.' .format(nombre)
+        texto = 'Hola {}, mucho gusto, mido {}' .format(nombre, self.estatura)
         return texto
 
 # variable > instancia de la clase realiza una copia y todas las modificaciones que se realicen solo se haran en esa copia de la clase
@@ -27,13 +27,14 @@ gabriela.estatura = 1.75
 
 #retorna el nombre de la clase en formato string
 print(Persona.__name__)
+
 print(eduardo)
 print(eduardo.estatura)
-print(gabriela.estatura)
+#print(gabriela.estatura)
 
 eduardo.saludar()
-gabriela.saludar()
+#gabriela.saludar()
 
 resultado = eduardo.saludar_cordialmente('Angel')
 print(resultado)
-print(gabriela.saludar_cordialmente('gabriela'))
+#print(gabriela.saludar_cordialmente('gabriela'))
