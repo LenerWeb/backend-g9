@@ -28,7 +28,14 @@ curso, grupo, mes, dia, nota = 'CodiGo','Backend', 'Octubre', 10, 15.4
 
 print(dia)
 
+print(curso)
 print(id(curso))
 del curso
 
-print(curso)
+print(mensaje)
+
+suma = 2+2
+print(suma)
+
+igual = 5 > 3
+print(igual)
