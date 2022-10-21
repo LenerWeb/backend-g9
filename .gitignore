@@ -1,0 +1,4 @@
+# este es un comentario
+entorno_*
+
+# en el archivo git ignore podemos utilizar patrones, usando el * indicaremos que no nos interesa que viene alli, solamente que ignore lo que viene antes o despues
