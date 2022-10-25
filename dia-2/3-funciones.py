@@ -52,7 +52,7 @@ print(curso[0])
 print(curso['dificultad'])
 print(curso.get('calificacion')) # no le agrega descripcion
 print(curso.get('calificacion','No hay')) #agrega descripcion
-#modificar valores en mi diccionario, si esa llave no existe, entoncesse creara
+#modificar valores en mi diccionario, si esa llave no existe, entonces se creara
 curso['mas_info']='esta es una informacion adicional'
 print(curso)
 #metodo .get SOLAMENTE sirve para visualizar la informacion, mas no para asignacion

@@ -1,8 +1,5 @@
 # Herencia > sirve para reutilizar una clase previamente definida
 
-from tokenize import cookie_re
-
-
 class Usuario:
     def __init__(self, nombre, apellido, correo):
         self.nombre = nombre
@@ -29,6 +26,7 @@ class Alumno(Usuario):
         resumen = super().mostrar_resumen()
         resumen['telefono_emergencia'] = self.telefono_emergencia
         return resumen
+        
 
 usuario01 = Usuario(nombre='Eduardo', apellido='De Rivero', correo='ederiveroman@gmail.com')
 usuario02 = Usuario('Alejandra', 'Perez', 'aperez@gmail.com')
@@ -39,4 +37,3 @@ print(usuario01.mostrar_resumen())
 alumno01 = Alumno('Juan', 'Martinez', 'jmartinez@yahoo.es', '954863278')
 alumno01.saludar()
 print(alumno01.mostrar_resumen())
-

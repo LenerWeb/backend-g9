@@ -1,8 +1,11 @@
-pip install NOMBRE_LIBRERIA > instalar la libreria, sino la encuentra lanzara un error
+pip install NOMBRE_LIBRERIA         > instalar la libreria, sino la encuentra lanzara un error
 python -m pip install --upgrade pip > actualizar pip (gestor de paquetes ) a la ultima version
 pip freeze                          > lista todas las librerias instalada en el scope actualizar
-pip lista                           > lista todas las librerias (intaladas predeterminadamente y manualmente)
+pip list                            > lista todas las librerias (intaladas predeterminadamente y manualmente)
 
+python -m venv NOMBRE_ENTORNO VIRTUAL > instalar el entorno virtual
+
+deactivate > sirve para desactivar el entorno_flask
 
 FORMAS DE LEVANTAR EL ENTORNO
 Windows:
@@ -14,3 +17,14 @@ Windows:
 
 - Mac o Linux:
     source entorno_flask/bin/activate
+
+pip uninstall flask > para desistalar flask
+pip uninstall camelcase > para desistalar camelcase
+
+pip --version > para ver en donde jala el entorno, global o virtual
+
+para entorno virtual solo se necesita:
+camelCase
+pip
+setuptools
+
