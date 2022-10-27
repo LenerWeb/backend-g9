@@ -1,6 +1,7 @@
 #request > toda la informacion que puedo leer del usuario, dentro de ella tendremos el body
 from flask import Flask, request
 from datetime import datetime
+from flask_cors import CORS
 
 usuarios = [
     {
@@ -18,6 +19,9 @@ usuarios = [
 # __name__ > muestra si el archivo es el archivo principal del proyecto; mostrara el valor de '__main__' y si no entonces mostrara otro valor.
 #print(__name__) # imprime __main__
 app = Flask(__name__)
+#declarar los cors (intercambio de recursos de origen compartido)
+
+CORS(app)
 
 # Endpoint > es cuando definimos una ruta para que pueda ser accedida
 # si no se define que verbo HTTp puede acceder, entonces el valor por defecto sera GET

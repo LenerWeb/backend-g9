@@ -28,3 +28,5 @@ camelCase
 pip
 setuptools
 
+libreria para permitir el acceso del puerto de entrada del frontend
+pip install flask-cors
