@@ -54,7 +54,8 @@ FROM alumnos
 	INNER JOIN alumnos_padres ON alumnos.id = alumnos_padres.alumno_id
 	INNER JOIN padres ON alumnos_padres.padre_id = padres.id
 	INNER JOIN cursos ON alumnos.curso_id = cursos.id
+-- 1. De la clausula anterior, solamente mostrar los resultados cuyo apellidop interno DEL PADRE sea rodriguez o jara
 WHERE padres.ape_paterno in ('RODRIGUEZ', 'JARA');
 
--- 1. De la clausula anterior, solamente mostrar los resultados cuyo apellidop interno DEL PADRE sea rodriguez o jara
+
 

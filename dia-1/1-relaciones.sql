@@ -31,6 +31,7 @@ ape_paterno VARCHAR(50) NOT NULL,
 ape_materno VARCHAR(50) NOT NULL,
 correo VARCHAR(250) UNIQUE NOT NULL,
 num_emergencia VARCHAR(10),
+-- Creo una columna referenciando segun el nombre de la tabla_nombre columna
 curso_id INT,
 -- Ahora relacionamos esa columna (alumno_id) con la tabla alumnos y su (id)
 FOREIGN KEY(curso_id) REFERENCES  cursos(id)
