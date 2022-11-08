@@ -64,7 +64,7 @@ FROM alumnos
 INNER JOIN cursos ON alumnos.curso_id = cursos.id
 WHERE correo LIKE '%gmail%';
 
-INSERT INTO alumnos VALUES (DEFAULT, 'JHONATAN', 'MAICELO', 'Roman', 'jgavilan@gmail.com', '958745632', NULL);
+INSERT INTO alumnos VALUES (DEFAULT, 'Jhonatan', 'Maicelo', 'Roman', 'jgavilan@gmail.com', '958745632', NULL);
 
 -- LEFT JOIN devuelve siempre todo de la izaquierdad asi no tenga nada a la derecha
 SELECT *
