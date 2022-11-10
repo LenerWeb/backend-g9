@@ -73,7 +73,7 @@ def agregar_alumno():
         #me crea una conexion con la base de datos
         cursor = mysql.connection.cursor()
         # al poner el % luego del string es lo mismo que utilizar el metodo .format
-        cursor.execute("INSERT INTO alumnos (id, nombre, ape_paterno, ape_materno, correo, num_emergencia) VALUES (DEFAULT, '%s', '%s', '%s', '%s', '%s' )" % (body.get('nombre'), body.get('ape_paterno'), body.get('ape_materno'), body.get('correo'), body.get('num_emergencia')))
+        cursor.execute("INSERT INTO alumnos (id, nombre, ape_paterno, ape_materno, correo, num_emergencia, curso_id) VALUES (DEFAULT, '%s', '%s', '%s', '%s', '%s', '%s' )" % (body.get('nombre'), body.get('ape_paterno'), body.get('ape_materno'), body.get('correo'), body.get('num_emergencia'), body.get('curso_id')))
         # indicamos a la base de datos que esa insercion tiene que perdurar (de manera permanente)
         mysql.connection.commit()
         # cerrar la conexion con la base de datos
