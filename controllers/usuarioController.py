@@ -5,7 +5,7 @@ from models.usuarios import UsuarioModel
 class UsuariosController(Resource):
     # los metodos que no queramos utilizar (GET, POST) lo tendremos que definir como metodo de la clase
     def get(self):
-
+        # https://docs.sqlalchemy.org/en/14/orm/query.html#query-api
         # SELECT * FROM usuarios;
         # me devolvera una lista con toddas las instancias de la clase UsuarioModel pero las tengo que formatear para poder devolverlas al frontend
         usuarios = conexion.session.query(UsuarioModel).all()
@@ -31,7 +31,7 @@ class UsuariosController(Resource):
     def post(self):
         body = request.get_json()
         try:
-
+            # Primero creo una nueva instancia de mi clase model
             nuevoUsuario = UsuarioModel()
             # asigno los valores a los atributos provenientes del body
             # INSERT INTO usuarios(nombre, correo, telefono) VALUES ('...', '...', '...');
