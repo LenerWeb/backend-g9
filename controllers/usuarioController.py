@@ -17,7 +17,6 @@ class UsuariosController(Resource):
         serializador = UsuarioRequestDto(many=True)
         # A este metodo le pasamos informacion proveniente de la vbase de datos y nos los convertira a un tipo de dato que pueda ser legible por el frontend
         # en base al modelo que estamos trabajando en ese DTO hara la conversion de tipos de datos (str, int, float, etc)
-
         # el metodo dum solamente  espera recibir una instancia a la vez
         data = serializador.dump(usuarios)
         # -------------------------------------
@@ -116,14 +115,14 @@ class UsuarioController(Resource):
             # si el usuario no me envie el telefono entonces conservar el valor anterior pero si me envia el valor null ahi si le eliminamos el telefono
             telefono = usuarioEncontrado.telefono
             try:
+                # si la llave 'telefono' no existe emitira un error por lo que ingresara al except y por ende, en este caso, no haremos nada 
                 telefono = data['telefono']
             except:
                 pass
-
             # aca sobreescribimos la informacion nueva del usuario
             usuarioEncontrado.nombre = data.get('nombre')
             usuarioEncontrado.correo = data.get('correo')
-            usuarioEncontrado.telefono = data.get('telefono') # ojo revisar repositorio profe
+            usuarioEncontrado.telefono = telefono # ojo revisar repositorio profe
 
             conexion.session.commit()
 

@@ -17,14 +17,18 @@ prueba(nombre=persona['nombre'], apellido=persona['apellido'])
 
 # si usamos una funcion con parametros definidos entonces tenemos que indicar en el diccionario ESE MISMO NOMBRE DE PARAMETROS ya que si es diferente, arrojara un error
 def saludar(nombre, apellido):
-    print(nombre)
+    print(nombre, apellido)
 
 usuario = {
     'nombre':'eduardo',
     'apellido':'de rivero'
 }
 
-saludar(**usuario)
+usuario2 = {
+    'nombrecito':'juanito'
+}
 
+saludar(**usuario)
+# Esto me arrojara un error ya que el parametro 'nombrecito' no concuerda con el parametro esperado (nombre)
 saludar(**usuario2)
-saludar(nombrecito=saludar)
+saludar(nombrecito='pedrito')
