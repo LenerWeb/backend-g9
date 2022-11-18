@@ -34,7 +34,7 @@ class AlmacenModel(models.Model):
     espacioAnaquel = models.IntegerField(db_column='espacio_anaquel')
     tipo = models.CharField(max_length=100, choices=tipoAlmacen)
     # tipo = models.CharField(max_length=100, choices=TipoAlmacenesOpciones.choices)
-    direccion = models.TextField()
+    direccion = models.CharField(max_length=250)
     # REKLACIONES ONE-TO-ONE
     # on_delete > se guardara la informacion de como debe actuar el almacen si es que se elimina el departamento ( el registro con ese modelo)
     # CASCADE > se elimina el departamento y en forma de cascada se elimina el almancen
@@ -48,3 +48,7 @@ class AlmacenModel(models.Model):
     class Meta:
         # db_table > indica como se llamara esta tabla en la base de datos, si no le indicamos usara el nombre de la clase como nombre de tabla
         db_table = 'almacenes'
+        # ordering > modificara el ordenamiento natural al momento de devolver varios registros, si se le pone un '-' al comienzo entonces se indicara que sera descendiente, caso contrario ascendente
+        ordering = ['-espacioAnaquel', 'direccion']
+        # unique_together > crear una unicidad compuesta, esto significaque los valores de dos culumnas no se puede repetir
+        unique_together = [['direccion','tipo']]
