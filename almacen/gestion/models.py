@@ -8,7 +8,7 @@ class DepartamentoModel(models.Model):
     # https://docs.djangoproject.com/en/4.1/ref/models/fields/#field-options > mostrarme todas las opciones que le puedo colocar a todas las columnas
     id= models.AutoField(primary_key=True, unique=True, null=False)
     nombre= models.CharField(max_length=50, null=False)
-    codigo_postal = models.CharField(max_length=10, unique=True, db_column='codigo_postal')
+    codigoPostal = models.CharField(max_length=10, unique=True, db_column='codigo_postal')
 
     class Meta:
         # pasarle metadta o informacion adicional a la clase de la cuela estamos heredando
