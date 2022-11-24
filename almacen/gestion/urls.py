@@ -12,4 +12,5 @@ urlpatterns = [
     path('prueba/', PruebaApiView.as_view()),
     path('departamentos/', DepartamentosApiView.as_view()),
     path('departamento/<int:pk>', DepartamentoApiView.as_view()),
+    path()
 ]

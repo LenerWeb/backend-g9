@@ -84,3 +84,5 @@ class DepartamentoApiView(RetrieveUpdateDestroyAPIView):
     queryset = DepartamentoModel.objects.all()
 
 # TODO: Realizar el crud pero ahora con los almacenes
+class AlmacenesApiView(ListCreateAPIView):
+    serializer_class = Almacenen
