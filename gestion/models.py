@@ -1,0 +1,53 @@
+from django.db import models
+# contrib > contributions
+# auth_user se encuentra en la aplicacion de auth
+# AbstractBaseUser > me permite total control sobre la tabla 'auth_user'
+# AbstractUser > me permite contriol solamente en las columnas de nombre, apellido, correo y password de la tabla 'auth_user'
+from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from .authManager import UsuarioManager
+
+# Create your models here.
+class PlatoModel(models.Model):
+    id = models.AutoField(primary_key=True, null=False, unique=True)
+    nombre = models.CharField(max_length=50, null=False)
+    # DecimalField > me permite un mejor manejo de la parte entera y parte decimal
+    # FloatField > se utiliza un tipo de dato nativo de python que seria el float
+    precio = models.DecimalField(max_digits=5, decimal_places=1, null=False)
+    disponibilidad = models.BooleanField(default=True)
+    # auto_now_add > datetime y sirve para indicar que se guarde la hora y fecha del servidor cuando se cree un nuevo registro
+    # https://docs.djangoproject.com/en/4.1/ref/models/fields/#datefield
+    fechaCreacion = models.DateTimeField(auto_now_add=True, db_column='fecha_creacion')
+
+    class Meta:
+        db_table = 'platos'
+        # ordenar por el precio descendiente
+        ordering = ['-precio']
+
+class UsuarioModel(AbstractBaseUser, PermissionsMixin):
+    # PermissionsMixin > me sierve para poder modificar los permisos que tendra este usuario al momento de crarse por los comandos (python manage.py createsuperuser)
+    id = models.AutoField(primary_key=True, unique=True)
+    nombre = models.CharField(max_length=50, null=False)
+    apellido = models.CharField(max_length=50, null=False)
+    # xxxxx@xxx.com
+    correo = models.EmailField(max_length=50, unique=True, null=False)
+    password = models.TextField(null=False)
+    tipoUsuario = models.CharField(max_length=40, choices=[('ADMIN','ADMINISTRADOR'),('USER','USUARIO')], db_column='tipo_usuario')
+    # utilizamos los siguientes atributos si queremos seguir trabajando con el panel administrativo
+    is_staff = models.BooleanField(default=False)
+    # is_active > para saber si sigue activo trabajando en la empresa
+    is_active = models.BooleanField(default=True)
+
+    createdAt = models.DateTimeField(auto_now_add=True, db_column='created_at')
+
+    object = UsuarioManager()
+
+    # sera el campoque pedira el panel administrativo para autorizar al usuario, tiene que ser una columna que sea 'unique'
+    USERNAME_FIELD = 'correo'
+
+    # las columnas o campos requeridos al momento de crear el usuario por la terminal, osea seran los datos solicitados, no tiene que ir el USERNAME_FIELD puesto que este ya esta implicitamente colocado
+    # tampoco va la contraseña porque esa ya es por defecto
+    REQUIRED_FIELDS = ['nombre', 'apellido', 'tipoUsuario']
+
+
+    class Meta:
+        db_table = 'usuarios'
