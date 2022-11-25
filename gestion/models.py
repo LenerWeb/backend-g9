@@ -39,7 +39,7 @@ class UsuarioModel(AbstractBaseUser, PermissionsMixin):
 
     createdAt = models.DateTimeField(auto_now_add=True, db_column='created_at')
 
-    object = UsuarioManager()
+    objects = UsuarioManager()
 
     # sera el campoque pedira el panel administrativo para autorizar al usuario, tiene que ser una columna que sea 'unique'
     USERNAME_FIELD = 'correo'
