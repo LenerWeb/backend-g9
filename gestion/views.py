@@ -1,9 +1,19 @@
-from rest_framework.generics import CreateAPIView, ListCreateAPIView, UpdateAPIView
+from rest_framework.generics import CreateAPIView, ListCreateAPIView, UpdateAPIView, ListAPIView
 from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework import status
 from .models import	UsuarioModel, PlatoModel
 from .serializers import UsuarioSerializer, PlatoSerializer
+# IsAuthenticated > solamente verifica que en la peticion este enviando una toquen valida
+# IsAuthenticatedOrReadOnly > Solamente para los metodos QUE NO SEAN GET pedira una token valida
+# IsAdminUser > verifica que el usuario de la token sea un usuario administrador (is_superuser = True)
+# AllowAny > Permite el libre acceso a todo el mundo
+# https://www.django-rest-framework.org/api-guide/permissions/
+from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnly
+from rest_framework_simplejwt.authentication import JWTAuthentication
+
+from .permissions import SoloAdmin
+
 
 class RegistroUsuarioApiView(CreateAPIView):
     queryset = UsuarioModel.objects.all()
@@ -34,6 +44,7 @@ class RegistroUsuarioApiView(CreateAPIView):
 class PlatosApiView(ListCreateAPIView):
     queryset = PlatoModel.objects.all()
     serializer_class = PlatoSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def post(self, request:Request):
         # podemos pasar dos parametroos PERO o es uno o es el otro
@@ -66,6 +77,7 @@ class PlatosApiView(ListCreateAPIView):
 class PlatoToggleApiView(UpdateAPIView):
     queryset = PlatoModel.objects.all()
     serializer_class = PlatoSerializer
+    permission_classes = [ IsAuthenticated ]
 
     def put(self, request:Request, id:str):
         # primero busco si existe ekl plato
@@ -91,3 +103,25 @@ class PlatoToggleApiView(UpdateAPIView):
 class PlatoUpdateApiView(UpdateAPIView):
     queryset = PlatoModel.objects.all()
     serializer_class = PlatoSerializer
+    permission_classes = [ IsAuthenticated ]
+
+class VistaProtegidaPlatosApiView(ListAPIView):
+    queryset = PlatoModel.objects.all()
+    serializer_class = PlatoSerializer
+    # Autentication_classes > indica la forma que se utiliara para autenticar, en este caso no necesitamos indicar ningun autentication ya que estamos utilizando la libreria simple-jwt, este seria su valor por defecto que  esta indicadoen el archivo settings.py
+    authentication_classes = [JWTAuthentication] # con: from rest_framework_simplejwt.authentication import JWTAuthentication, no es necesario si ya esta el siguiente comando
+    # Me permite agregar autenticacion a mis metodos de esta vista generica
+    permission_classes = [ SoloAdmin ]
+
+    def get(self, request:Request):
+        # request.auth > me devolcera lo que se esta utilizando para la autenticacion (la JWT)
+        print('El auth es:', request.auth)
+        # request.user > una vez que ya comprobo que el usuario existe y la token es coorecta, ahora en el request.user se almacenara el usuario que esta utilizando esa token (gracias al parametro 'USER_ID_CLAIM')
+        print('El user es:', request.user)
+        return Response(data={
+            'message':'Hola',
+            'usuario': {
+                'id': request.user.id,
+                'correo': request.user.correo
+            }
+        })
