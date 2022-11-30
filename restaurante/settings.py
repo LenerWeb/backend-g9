@@ -42,10 +42,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gestion'
+    'gestion',
+    "corsheaders", # para trabajar con el uso de los cors
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -153,3 +155,16 @@ SIMPLE_JWT = {
     # es el nombre con el cual ser guardara en el payload el id del usuario
     'USER_ID_CLAIM': 'id_del_usuario',
 }
+
+# sirve para indicar a los cors que origenes estan permitidos de hacer consultas
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:5500',
+    'https://www.google.com'
+]
+
+# sirve para indicar los metodos que pueden consultar a mi backend
+CORS_ALLOW_METHODS = [
+    "GET",
+    "POST",
+    "PUT",
+]
