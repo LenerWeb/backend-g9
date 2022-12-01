@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -169,3 +170,6 @@ CORS_ALLOW_METHODS = [
     "POST",
     "PUT",
 ]
+
+# sirve para indicar en donde se guardaran los archivos statics (CSS, JS, HTML) utiliza Django y DRF
+STATIC_ROOT =  BASE_DIR / 'archivos_estaticos'
