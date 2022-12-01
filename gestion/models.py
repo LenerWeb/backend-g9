@@ -31,7 +31,10 @@ class UsuarioModel(AbstractBaseUser, PermissionsMixin):
     # xxxxx@xxx.com
     correo = models.EmailField(max_length=50, unique=True, null=False)
     password = models.TextField(null=False)
-    tipoUsuario = models.CharField(max_length=40, choices=[('ADMIN','ADMINISTRADOR'),('USER','USUARIO')], db_column='tipo_usuario')
+    tipoUsuario = models.CharField(max_length=40, choices=[
+        ('ADMIN','ADMINISTRADOR'),
+        ('USER','USUARIO')
+        ], db_column='tipo_usuario')
     # utilizamos los siguientes atributos si queremos seguir trabajando con el panel administrativo
     is_staff = models.BooleanField(default=False)
     # is_active > para saber si sigue activo trabajando en la empresa
