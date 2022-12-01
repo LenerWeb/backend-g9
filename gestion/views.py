@@ -13,7 +13,7 @@ from rest_framework.permissions import IsAuthenticated, IsAuthenticatedOrReadOnl
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from rest_framework.decorators import api_view
 from .permissions import SoloAdmin
-# para utilizar la raw queries 
+# para utilizar la raw queries (consulta directa a la base de datos sin utilizar el ORM)
 from django.db import connection
 
 
@@ -132,16 +132,16 @@ class VistaProtegidaPlatosApiView(ListAPIView):
 @api_view(http_method_names=['GET'])
 def mostrar_usuarios_raw(request):
     with connection.cursor() as cursor:
-        # al utilizar un SP, funcion, vista o algoque no se haya definido en los modelos en el ORM, la unica forma de utilizarlo desde el backend es mediante una raw query
-        cursor.execute('CALL DevolverTodosLosUsuarios()')
+        # al utilizar un SP, funcion, vista o algo que no se haya definido en los modelos en el ORM, la unica forma de utilizarlo desde el backend es mediante una raw query
+        cursor.execute("CALL DevolverTodosLosUsuarios()")
         resultado = cursor.fetchall()
         # print (resultado)
-        # ahora mapeariamos el resultado (se recomienda utilizar un serializador pero no un ModelSerializer puesto que no estamos utilizando ningun modelo)
+        # ahora mapeariamos el resultado (se recomienda utilizar un serializador PERO NO un ModelSerializer puesto que no estamos utilizando ningun modelo)
         for usuario in resultado:
             print(usuario[3]) # nombre
 
-        # este seruia el caso en el cual nosotros queremos utilizar un SP que devuelve cierta informacion con un parametro OUT
-        cursor.execute("CALL DevolverUsuarioSegunTipo('ADMIN', @usuarioId)")
+        # Este seria el caso en el cual nosotros queremos utilizar un SP que devuelve cierta informacion con un parametro OUT
+        cursor.execute("CALL DevolverUsuariosSegunTipo('ADMIN', @usuarioId)")
         cursor.execute('SELECT @usuarioId')
         # fetchone(): devolvera la primera fila de todo el resultado
         # fetchall(): devolvera todos los registros
@@ -154,3 +154,4 @@ def mostrar_usuarios_raw(request):
                 'admin': resultado2[0]
             }
         })
+                

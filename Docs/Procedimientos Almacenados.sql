@@ -14,7 +14,7 @@ DELIMITER ;
 -- Ahora un SP con parametros
 -- En este caso declaramos un parametro de entrada (IN) y a su vez le ponemos un nombre al delimitador
 -- si queremos indicar un parametro de salida (OUT)
-DROP PROCEDURE DevolverUsuariosSegunTipo;
+DROP PROCEDURE IF EXISTS DevolverUsuariosSegunTipo;
 DELIMITER //
 CREATE PROCEDURE DevolverUsuariosSegunTipo(IN tipo varchar(40), OUT usuarioId INT)
 BEGIN
