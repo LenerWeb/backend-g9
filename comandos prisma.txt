@@ -1,0 +1,3 @@
+npx prisma init > inicializa la configuracion de prisma en nuestro proyecto
+npx prisma format > formatea el archivo shema.prisma y lo ordena
+npm prisma migrate dev > crea una nueva migracion, solicitandonos el nombre
