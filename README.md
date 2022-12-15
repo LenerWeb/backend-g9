@@ -17,6 +17,6 @@ Cada semana esta en una rama independiente, en la cual seguira detallando a cont
 - Semana 06: <a href="https://github.com/LenerWeb/backend-g9/tree/semana06">LINK</a>
 - Semana 07: <a href="https://github.com/LenerWeb/backend-g9/tree/semana07">LINK</a>
 - Semana 08: <a href="https://github.com/LenerWeb/backend-g9/tree/semana08">LINK</a>
-- Semana 09: No hay
-- Semana 10: No hay
+- Semana 09: <a href="https://github.com/LenerWeb/backend-g9/tree/semana09">LINK</a>
+- Semana 10: <a href="https://github.com/LenerWeb/backend-g9/tree/semana10">LINK</a>
 - Semana Repaso: <a href="https://github.com/LenerWeb/backend-g9/tree/semana-repaso">LINK</a>
