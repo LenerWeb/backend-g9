@@ -56,9 +56,20 @@ export async function login(req, res) {
 export async function perfil(req, res){
     console.log(req.user);
     // seleccionamos solamente el nombre del usuario indicando las columnas separadas po eespacio y la que no se coloca un signo negativo (-)
-    const usuarioEncontrado = await Usuario.findById(req.user._id).select(
-        "nombre email direcciones" // -_id
-        ); 
+    // const usuarioEncontrado = await Usuario.findById(req.user._id).select(
+    //     "nombre email direcciones" // -_id
+    //     ); 
+
+    await Usuario.aggregate([
+    
+    ]).lookup({
+        from: "agendas",
+        localField: "agendas",
+        foreignField: "_id",
+        as: "agendas",
+    })
+    .match({ _id: req.user._id }) // es igual a { $match: {_id: req.user._id} }, encima lookup
+    .project("-password");
 
     res.json({
         content: usuarioEncontrado,

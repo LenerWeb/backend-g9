@@ -4,7 +4,12 @@ import { vigilante } from "../utils/wachiman.js";
 
 export const agendaRouter = Router();
 
-agendaRouter.route("/agenda").post(vigilante, agendaController.crearAgenda)
+agendaRouter
+    .route("/agenda")
+    .all(vigilante)
+    .post(agendaController.crearAgenda)
+    .get(agendaController.listarAgenda);
+
 
 
 
