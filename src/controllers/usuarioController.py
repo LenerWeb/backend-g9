@@ -57,6 +57,8 @@ class LoginController(Resource):
                     'jti': usuarioEncontrado.id,
                     'nombre': usuarioEncontrado.nombre
                 }
+                # identity > sirve para indicar a que usuario pertenecera esta token 
+                # additional_claims > agregara informacion al nivel mas externo de la token (en el payload)
                 token = create_access_token(identity=usuarioEncontrado.id, additional_claims=payload)
                 return {
                     'message': 'Bienvenido',

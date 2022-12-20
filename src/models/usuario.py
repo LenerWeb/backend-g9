@@ -11,8 +11,4 @@ class UsuarioModel(conexion.Model):
     password = Column(type_=types.Text, nullable=False)
 
     __tablename__= 'usuarios'
-    dni = Column(type_=types.String(length=8), unique=True, nullable=False)
-    correo = Column(type_=types.String(length=100), unique=True, nullable=False)
-    password = Column(type_=types.Text, nullable=False)
-
-    __tablename__= 'usuarios'
+    
