@@ -1,7 +1,7 @@
 import express, { json } from "express";
 
 const servidor = express()
-// use > sirve para agregar un middleware que validara  la informacion dependiendo el orden en el que lo coloquemos
+// use > sirve para agregar un middleware que validara  la informacion dependiendo el orden en el que lo coloquemos siempre debemos ponerlo arriba del codigo
 // llegue informacion en formato JSON este middleware lo pueda convertir en una informacion legible y lo almacene en el req.body
 servidor.use(json())
 const productos = [
@@ -39,6 +39,13 @@ servidor
     .route('/productos')
     .get((req, res) => {
         // devuelve todos los productos que esten disponible solo puedes utilizar el metodo filter
+
+        // segunda opcion funcion flecha
+        // const productoDisponible = productos.filter(
+        //    (producto) => producto.disponible === true
+        // );
+
+        // primera opcion funcion flecha
         const productoDisponible = productos.filter((producto) => {
             return producto.disponible === true;
         });
