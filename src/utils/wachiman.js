@@ -6,7 +6,7 @@ export async function vigilante(req, res, next){
     console.log('Yo soy un middleware');
     
     // primero verificamos que tengamos un token
-    // headers cabecera de la token es ahi donde se encia el user-agent (host o servidores), host (host del cliente)
+    // headers cabecera de la token es ahi donde se envia el user-agent (host o servidores), host (host del cliente) y otros headers que el cliente lo puede setear, aqui tambien se adjunta la autorizacion
     if(!req.headers.authorization){
         return res.status(401).json({
             message: "Se necesita una token para esta operacion",

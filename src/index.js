@@ -2,6 +2,8 @@ import express from "express";
 import mongoose from "mongoose";
 import { usuarioRouter } from "./routes/usuarioRoute.js";
 import { agendaRouter } from "./routes/agendaRoute.js";
+import { imagenRouter } from "./routes/imagenRoute.js";
+
 const server = express();
 const PORT = process.env.PORT ?? 5000;
 
@@ -11,6 +13,7 @@ server.use(express.json());
 //indicamos que usamos un conjunto de rutas
 server.use(usuarioRouter);
 server.use(agendaRouter);
+server.use(imagenRouter);
 
 server.listen(PORT, async () => {
 	console.log(`Servidor corriendo exitosamente en el puerto ${PORT}`);
