@@ -1,3 +1,13 @@
+npm init
+npm i express
+npm i --save -dev nodemon @types/express
+npm i --save -dev dotenv-cli => npm run start:dev
+npx dotenv => menu ayuda = opcional
+npx cli => comandos npm.txt
+npm i --save -dev prisma
+npx prisma => cli de prisma
+Diagram => diagrama de la tabla de base de datos
+docs MERv1.png => imagen de diagrama
 npx prisma init > inicializa la configuracion de prisma en nuestro proyecto
 npx prisma format > formatea el archivo shema.prisma y lo ordena
 npm prisma migrate dev > crea una nueva migracion, solicitandonos el nombre y luego la ejecuta para que se vea reflejada en la base de datos, luego genera el cliente que es la libreria que nos servira para poder trabajar con la bd desde nuestro backend
